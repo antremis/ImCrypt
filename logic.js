@@ -71,11 +71,12 @@ const downloadCanvasAsImage = (filename) => {
 const handleClick = () => {
     const formData = new FormData()
     formData.append('img', imageLoader.files[0])
-    
-    let url = ''
-    if(checkbox.checked) {url = 'http://127.0.0.1:5000/api/decrypt'; formData.append('hash', hash_el_input.value)}
-    else {url = 'http://127.0.0.1:5000/api/encrypt'}
-    axios.post(url, formData)
+    notify('Image is being processed, please wait for some time')
+    let baseURL = 'https://imcrypt.onrender.com'
+    let endpoint = ''
+    if(checkbox.checked) {endpoint = '/api/decrypt'; formData.append('hash', hash_el_input.value)}
+    else {endpoint = '/api/encrypt'}
+    axios.post(baseURL+endpoint, formData)
         .then(res => (res.data))
         .then((temp) => {
             img = temp.img
@@ -97,7 +98,8 @@ const handleClick = () => {
             hiddenCanvas.height = height;
             ctxHiddenCanvas.putImageData(data, 0, 0);
             putFromOneCanvasToAnother(hiddenCanvas, result_canvas);
-            document.querySelector('#display-hash').value = temp.hash;
+            if(temp.hash) hash_el_display.value = temp.hash;
+            else hash_el_display.value = '';
             document.querySelector('#download-btn').addEventListener('click', () => handleDownload(temp.filename));
         })
         .catch(err => notify(err, true))

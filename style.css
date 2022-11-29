@@ -173,7 +173,7 @@ main > #notice{
     -o-transform: translate(-50%, 0);
     user-select: none;
     animation: 2s fade-in-out linear;
-    -webkit-animation: 2s fade-in-out linear;
+    -webkit-animation: 5s fade-in-out linear;
 }
 
 @keyframes fade-in-out {

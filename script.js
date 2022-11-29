@@ -10,7 +10,7 @@ const notify = (text, isError) => {
     setTimeout(() => {
         notice.innerHTML = '';
         notice.classList.remove('error');
-    }, 2000);
+    }, 5000);
 }
 
 checkbox.addEventListener('click', () => {
