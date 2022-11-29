@@ -1,6 +1,4 @@
 Pillow
-copy
-random
 numpy
 flask
 flask_cors
