@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="./script.js" defer></script>
+    <script src="./logic.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href="/">imCrypt</a>
+        <nav>
+            <label for="imageLoader"><ion-icon name="cloud-upload-outline"></ion-icon></label>
+            <input type="file" id="imageLoader" name="imageLoader" class="hidden" accept='image/*'/>
+            <div class='options'>
+                <p>Encrypt</p>
+                <label for="toggle" class='toggle'></label>
+                <input type="checkbox" id="toggle" name="toggle" class="hidden">
+                <p>Decrypt</p>
+            </div>
+            <div id="convert" class="btn">CONVERT</div>
+        </nav>
+    </header>
+
+    <main>
+        <p id="notice"></p>
+        <div class="image-wrapper">
+            <canvas id="input-canvas"></canvas>
+            <canvas id="result-canvas"></canvas>
+            <canvas id="hidden-canvas" class="hidden"></canvas>
+        </div>
+        <div class="hash-wrapper">
+            <input id="display-hash" type="text" class="hash" placeholder="Your decryption hash will appear here." readonly>
+            <input id="input-hash" type="text" class="hash hidden" placeholder="Paste your decryption hash here">
+            <div id="download-btn" class="btn">Download</div>
+        </div>
+    </main>
+</body>
+</html>
