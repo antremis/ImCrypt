@@ -1,4 +1,7 @@
-flask
+PIL
+copy
+random
 numpy
+flask
 flask_cors
 waitress
