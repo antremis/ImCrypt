@@ -27,12 +27,10 @@ def encryptImage():
         if filename == '':
             return jsonify({"message" : "No Image Selected"}), 400
         filetype = img.filename.split('.')[-1]
-        if filetype not in ['jpg', 'png', 'wfif', 'jpeg']:
-            return jsonify({"message" : "Image type not supported"}), 400
         
-        img = np.array(Image.open(img.stream).convert('L'))
+        img = np.array(Image.open(img.stream))
         enc_img, hash = encrypt(img)
-        return jsonify({"message" : "Encrypted", 'img':enc_img, 'hash':hash, "filename" : f'encrypted_{filename}'}), 200
+        return jsonify({"message" : "Encrypted", 'img':enc_img.tolist(), 'hash':hash, "filename" : f'encrypted_{filename}'}), 200
     else :
         return jsonify({"message" : "Unsupported Request Method"}), 405
 
@@ -48,16 +46,14 @@ def decryptImage():
         if filename == '':
             return jsonify({"message" : "No Image Selected"}), 400
         filetype = img.filename.split('.')[-1]
-        if filetype not in ['jpg', 'png', 'wfif', 'jpeg']:
-            return jsonify({"message" : "Image type not supported"}), 400
         
         if 'hash' not in request.form:
             return jsonify({"message" : "Please send hash with the tag of 'hash'"}), 400
 
         hash = request.form['hash']
-        img = np.array(Image.open(img.stream).convert('L'))
+        img = np.array(Image.open(img.stream))
         dec_img = decrypt(img, hash)
-        return jsonify({"message" : "Decrypted", 'img':dec_img, "filename" : f'decrypted_{filename}'}), 200
+        return jsonify({"message" : "Decrypted", 'img':dec_img.tolist(), "filename" : f'decrypted_{filename}'}), 200
     else :
         return jsonify({"message" : "Unsupported Request Method"}), 405
     

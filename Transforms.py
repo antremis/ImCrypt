@@ -31,9 +31,6 @@ def reversebitIntensityTransform(encrypted_img, order):
     return dec_img
 
 def spacialTransform(img, filter):
-    # enc_image = []
-    # for i in range(len(img)):
-    #     enc_image.append([0]*len(img[i]))
     enc_image = copy.deepcopy(img)
     
     height = len(img)
@@ -51,9 +48,6 @@ def spacialTransform(img, filter):
     return enc_image
 
 def reverseSpacialTransform(enc_image, filter):
-    # dec_image = []
-    # for i in range(len(enc_image)):
-    #     dec_image.append([0]*len(enc_image[i]))
     dec_image = copy.deepcopy(enc_image)
 
     height = len(enc_image)
