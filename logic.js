@@ -71,11 +71,11 @@ const downloadCanvasAsImage = (filename) => {
 const handleClick = () => {
     const formData = new FormData()
     formData.append('img', imageLoader.files[0])
-    notify('Image is being processed, please wait for some time')
+    notify('Image is being processed. This may take a few minutes, so please wait <3')
     let baseURL = 'https://imcrypt.onrender.com'
     let endpoint = ''
-    if(checkbox.checked) {endpoint = '/api/decrypt'; formData.append('hash', hash_el_input.value)}
-    else {endpoint = '/api/encrypt'}
+    if(checkbox.checked) {endpoint = '/decrypt'; formData.append('hash', hash_el_input.value)}
+    else {endpoint = '/encrypt'}
     axios.post(baseURL+endpoint, formData)
         .then(res => (res.data))
         .then((temp) => {
@@ -84,11 +84,11 @@ const handleClick = () => {
             const height = img.length
             aspect_ratio = height/width
             data = []
-            for(let r of img){
-                for(let c of r){
-                    data.push(c)
-                    data.push(c)
-                    data.push(c)
+            for(let row of img){
+                for(let col of row){
+                    data.push(col[0])
+                    data.push(col[1])
+                    data.push(col[2])
                     data.push(255)
                 }
             }
