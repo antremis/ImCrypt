@@ -72,7 +72,7 @@ const handleClick = () => {
     const formData = new FormData()
     formData.append('img', imageLoader.files[0])
     notify('Image is being processed. This may take a few minutes, so please wait <3')
-    let baseURL = 'https://imcrypt.onrender.com'
+    let baseURL = 'https://imcrypt.onrender.com/api'
     let endpoint = ''
     if(checkbox.checked) {endpoint = '/decrypt'; formData.append('hash', hash_el_input.value)}
     else {endpoint = '/encrypt'}
